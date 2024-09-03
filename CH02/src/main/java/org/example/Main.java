@@ -21,8 +21,25 @@ public class Main {
 
             transaction.begin();
 
-            // 로직 생성
-            logic(entityManager);
+            // 로직 실행
+            //logic(entityManager);
+
+            Member member1 = new Member();
+            member1.setId("id1");
+            member1.setUsername("username1");
+            member1.setAge(1);
+
+            entityManager.persist(member1);
+
+            Member member2 = new Member();
+            member2.setId("id2");
+            member2.setUsername("username2");
+            member2.setAge(2);
+
+            entityManager.persist(member2);
+
+            List<Member> members = entityManager.createQuery("select m from Member m").getResultList();
+            System.out.println("Members.size()="+members.size());
 
             transaction.commit();
 
