@@ -28,15 +28,26 @@ public class Main {
             member1.setId("id1");
             member1.setUsername("username1");
             member1.setAge(1);
+            //--- 비영속 상태
 
             entityManager.persist(member1);
+            //--- 영속 상태
 
-            Member member2 = new Member();
-            member2.setId("id2");
-            member2.setUsername("username2");
-            member2.setAge(2);
+            // 1차 캐시에서 가져옴
+//            Member findMember = entityManager.find(Member.class, "id1000");
+//            System.out.println(findMember.getUsername());
 
-            entityManager.persist(member2);
+
+
+            // entityManager.detach(member1);
+            //--- 준영속 상태
+
+//            Member member2 = new Member();
+//            member2.setId("id2");
+//            member2.setUsername("username2");
+//            member2.setAge(2);
+
+//            entityManager.persist(member2);
 
             List<Member> members = entityManager.createQuery("select m from Member m").getResultList();
             System.out.println("Members.size()="+members.size());
