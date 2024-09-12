@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.domain.User;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -24,20 +26,23 @@ public class Main {
             // 로직 실행
             //logic(entityManager);
 
-            Member member1 = new Member();
+            User member1 = new User();
             member1.setId("id1");
-            member1.setUsername("username1");
-            member1.setAge(1);
+            member1.setName("username1");
+            member1.setCity("city1");
+            member1.setStreet("street1");
+            member1.setZipcode(1);
             //--- 비영속 상태
 
             entityManager.persist(member1);
             //--- 영속 상태
 
+            //entityManager.detach(member1);
             //--- 준영속 상태
 
-            Member findUser = entityManager.find(Member.class, "test11");
-            System.out.println(findUser.getUsername());
-            findUser.setUsername("이름변경");
+            User findUser = entityManager.find(User.class, "test11");
+            System.out.println(findUser.getName());
+            findUser.setName("이름변경");
 
             // 1차 캐시에서 가져옴
 //            Member findMember = entityManager.find(Member.class, "id1000");
@@ -68,23 +73,26 @@ public class Main {
         entityManagerFactory.close();
     }
 
-        private static void logic(EntityManager em){
-            String id = "test2";
-            Member member = new Member();
-            member.setId(id);
-            member.setUsername("testName2");
-            member.setAge(2);
+    private static void logic(EntityManager em){
+        String id = "test2";
+        User member = new User();
+        member.setId(id);
+        member.setName("testName2");
+        member.setCity("city2");
+        member.setStreet("street2");
+        member.setZipcode(2);
 
-            // 등록
-            em.persist(member);
+        // 등록
+        em.persist(member);
 
-            member.setAge(20);
+        member.setZipcode(20);
 
-            Member findMember = em.find(Member.class, id);
-            System.out.println("findMember = " + findMember.getUsername() +"/ age = " + findMember.getAge());
+        User findMember = em.find(User.class, id);
+        System.out.println("findMember = " + findMember.getName() +"/ zipcode = " + findMember.getZipcode());
 
-            List<Member> members = em.createQuery("select m from Member m").getResultList();
-            System.out.println("Members.size()="+members.size());
+        List<User> members = em.createQuery("select m from User m").getResultList();
+        System.out.println("Members.size()="+members.size());
 
-        }
-}
+    }
+
+    }
