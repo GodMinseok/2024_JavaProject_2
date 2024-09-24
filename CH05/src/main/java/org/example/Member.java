@@ -1,10 +1,24 @@
 package org.example;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import org.hibernate.annotations.Comment;
+
+@Entity
 public class Member {
 
+    @Id
+    @Column(name = "MEMBER_ID")
     private String id;
+
     private String username;
 
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
     private Team team;
 
     public String getId() {
@@ -35,4 +49,6 @@ public class Member {
         this.id = id;
         this.username = username;
     }
+
+    public Member() {}
 }
