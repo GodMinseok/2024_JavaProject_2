@@ -17,7 +17,7 @@ public class Main {
         tx.begin();
         testSave(em);
         deleteRelation(em);
-        queryJoin(em);
+//        queryJoin(em);
         tx.commit();
 
 //        Member member1 = new Member("user01", "회원1");
@@ -73,9 +73,15 @@ public class Main {
     }
 
     public static void deleteRelation(EntityManager em) {
-//        Member member = em.find(Member.class, "user02");
-//        member.setTeam(null);
-        // team2 삭제
+        Member member = em.find(Member.class, "user02");
+        member.setTeam(null);
+
+        Member member1 = em.find(Member.class, "user01");
+        member1.setTeam(null);
+
+        Team team1 = em.find(Team.class, "team1");
+        em.remove(team1);
+
 
 
     }
