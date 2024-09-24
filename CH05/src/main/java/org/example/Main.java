@@ -15,9 +15,10 @@ public class Main {
         EntityTransaction tx = em.getTransaction();
 
         tx.begin();
-        testSave(em);
-        deleteRelation(em);
+//        testSave(em);
+//        deleteRelation(em);
 //        queryJoin(em);
+        biOrect(em);
         tx.commit();
 
 //        Member member1 = new Member("user01", "회원1");
@@ -35,6 +36,32 @@ public class Main {
 //        System.out.println("member1의 팀은 = " + team.getName());
 
     }
+
+    public static void biOrect(EntityManager em) {
+        Team team1 = new Team();
+        team1.setId("team1");
+        team1.setName("팀1");
+
+        em.persist(team1);
+
+        Member member1 = new Member("member1", "회원1");
+        member1.setTeam(team1);
+        em.persist(member1);
+
+//        team1.getMembers().add(member1);
+
+//        em.flush();
+//        em.clear();
+
+        Team findTeam = em.find(Team.class, team1.getId());
+        System.out.println(findTeam.getName());
+        List<Member> members = findTeam.getMembers();
+
+        for(Member member : members) {
+            System.out.println("[member.username="+member.getUsername()+"]"+"[member.team="+member.getTeam().getName()+"]");
+        }
+    }
+
     public static void testSave(EntityManager em) {
 
         Team team1 = new Team();

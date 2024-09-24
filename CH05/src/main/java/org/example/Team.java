@@ -13,8 +13,15 @@ public class Team {
     @Id
     @Column(name = "TEAM_ID")
     private String id;
-
     private String name;
+
+    public void setMembers(List<Member> members) {
+        this.members = members;
+    }
+
+    public List<Member> getMembers() {
+        return members;
+    }
 
     @OneToMany(mappedBy = "team")
     private List<Member> members = new ArrayList<>();
