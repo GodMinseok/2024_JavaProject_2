@@ -1,9 +1,8 @@
 package org.example.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="USERTB")
@@ -21,6 +20,10 @@ public class User {
     private String street;
 
     private Integer zipcode;
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders = new ArrayList<Order>();
+
 
 
     public void setId(String id) {
