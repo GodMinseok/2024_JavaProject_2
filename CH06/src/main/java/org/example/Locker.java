@@ -11,10 +11,13 @@ public class Locker {
     private Long id;
     private String name;
 
-    @OneToOne(mappedBy = "locker")
-    private Member member;
+//    @OneToOne(mappedBy = "locker") // 연관관계 주인이 멤버에 있다
 
     @OneToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    @OneToOne()
     @JoinColumn(name = "locker_id")
     private Locker locker;
 
