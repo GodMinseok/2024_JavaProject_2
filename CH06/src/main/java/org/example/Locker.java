@@ -17,17 +17,6 @@ public class Locker {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToOne()
-    @JoinColumn(name = "locker_id")
-    private Locker locker;
-
-    public Locker getLocker() {
-        return locker;
-    }
-
-    public void setLocker(Locker locker) {
-        this.locker = locker;
-    }
 
     public Long getId() {
         return id;
@@ -43,5 +32,8 @@ public class Locker {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setMember(Member member) {
     }
 }

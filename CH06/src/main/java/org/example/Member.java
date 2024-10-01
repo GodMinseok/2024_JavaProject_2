@@ -1,6 +1,8 @@
 package org.example;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Member {
@@ -14,6 +16,13 @@ public class Member {
     @OneToOne(mappedBy = "member")
 //    @JoinColumn(name = "locker_id")
     private Locker locker;
+
+    @ManyToMany
+    @JoinTable(
+            name = "MEMER_PRODUCT"
+            , joinColumns = @JoinColumn(name = "member_id")
+    )
+    private List<Product> products = new ArrayList<Product>();
 
     public Locker getLocker() {
         return locker;
@@ -37,5 +46,13 @@ public class Member {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }
