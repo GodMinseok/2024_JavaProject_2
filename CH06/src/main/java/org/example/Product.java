@@ -2,20 +2,17 @@ package org.example;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "PRODUCT_ID")
+    @Column(name = "product_id")
     private String id;
 
     private String name;
-
-    @ManyToMany(mappedBy = "products")
-    private List<Member> members;
 
     public String getId() {
         return id;
@@ -33,11 +30,4 @@ public class Product {
         this.name = name;
     }
 
-    public List<Member> getMembers() {
-        return members;
-    }
-
-    public void setMembers(List<Member> members) {
-        this.members = members;
-    }
 }
