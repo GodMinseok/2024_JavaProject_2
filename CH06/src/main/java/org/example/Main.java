@@ -68,21 +68,21 @@ public class Main {
 //        member2.getProducts().add(product2);
         em.persist(member2);
 
-        MemberProduct memberProduct = new MemberProduct();
+        Order memberProduct = new Order();
         memberProduct.setMember(member); // 홍길동
         memberProduct.setProduct(product); // 커피
         memberProduct.setOrderAmount(2); // 2잔
         memberProduct.setOrderDate(LocalDateTime.now());
         em.persist(memberProduct);
 
-        MemberProduct memberProduct2 = new MemberProduct();
+        Order memberProduct2 = new Order();
         memberProduct2.setMember(member); // 고길동
         memberProduct2.setProduct(product); // 커피
         memberProduct2.setOrderAmount(3); // 3잔
         memberProduct2.setOrderDate(LocalDateTime.now());
         em.persist(memberProduct2);
 
-        MemberProduct memberProduct3 = new MemberProduct();
+        Order memberProduct3 = new Order();
         memberProduct3.setMember(member); // 홍길동
         memberProduct3.setProduct(product2); // 아이스크림
         memberProduct3.setOrderAmount(1); // 1개
@@ -111,7 +111,7 @@ public class Main {
 
         System.out.println(" member = " + findMember.getName());
         System.out.println(" product = " + findProduct.getName());
-        System.out.println(" orderAmount = " + memberProduct.getOrderAmount());
+        System.out.println(" orderAmount = " + Order.getOrderAmount());
 
 
 //        member.getProducts().forEach(System.out::println);
