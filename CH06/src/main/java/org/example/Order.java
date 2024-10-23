@@ -19,7 +19,7 @@ public class Order {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    private int orderAmount;
+    private static int orderAmount;
 
     public Long getId() {
         return id;
@@ -45,6 +45,9 @@ public class Order {
         this.product = product;
     }
 
+    public static int getOrderAmount() {
+        return orderAmount;
+    }
 
     public void setOrderAmount(int orderAmount) {
         this.orderAmount = orderAmount;
