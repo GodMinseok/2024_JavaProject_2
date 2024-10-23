@@ -45,9 +45,6 @@ public class Order {
         this.product = product;
     }
 
-    public static int getOrderAmount() {
-        return orderAmount;
-    }
 
     public void setOrderAmount(int orderAmount) {
         this.orderAmount = orderAmount;
