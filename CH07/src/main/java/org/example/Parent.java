@@ -1,8 +1,6 @@
 package org.example;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Parent {
@@ -12,6 +10,12 @@ public class Parent {
     private String id;
 
     private String name;
+
+    @OneToOne
+    @JoinTable(name = "PARENT_CHILD",
+            joinColumns = @JoinColumn(name = "PARENT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "CHILD_ID"))
+    private Child child;
 
     public String getId() {
         return id;

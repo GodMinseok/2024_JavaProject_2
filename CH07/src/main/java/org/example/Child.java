@@ -6,13 +6,16 @@ import javax.persistence.*;
 @IdClass(ChildId.class)
 public class Child {
 
-    @EmbeddedId
-    private ChildId id;
-
-    @MapsId("parentId") // ChildId.parentId 매핑
-    @ManyToOne
-    @JoinColumn(name = "PARENT_ID")
-    private Parent parent;
+    @Id @GeneratedValue
+    @Column(name = "CHILD_ID")
+    private Long id;
+//    @EmbeddedId
+//    private ChildId id;
+//
+//    @MapsId("parentId") // ChildId.parentId 매핑
+//    @ManyToOne
+//    @JoinColumn(name = "PARENT_ID")
+//    private Parent parent;
 
     private String name;
 }
