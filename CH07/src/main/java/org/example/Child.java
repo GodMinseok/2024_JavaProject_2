@@ -3,12 +3,12 @@ package org.example;
 import javax.persistence.*;
 
 @Entity
-@IdClass(ChildId.class)
 public class Child {
 
     @Id @GeneratedValue
     @Column(name = "CHILD_ID")
     private Long id;
+
 //    @EmbeddedId
 //    private ChildId id;
 //
