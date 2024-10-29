@@ -13,7 +13,10 @@ public class Parent {
 
     private String name;
 
-    @OneToMany(mappedBy = "parent")
+    @ManyToMany
+    @JoinTable(name = "PARENT_CHILD",
+            joinColumns = @JoinColumn(name = "PARENT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "CHILD_ID"))
     private List<Child> child = new ArrayList<Child>();
 
     public String getId() {
