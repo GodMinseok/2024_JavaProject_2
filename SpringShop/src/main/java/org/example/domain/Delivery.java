@@ -3,11 +3,11 @@ package org.example.domain;
 import javax.persistence.*;
 
 @Entity
-public class Delivery {
+public class Delivery extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "delivery_id")
+    @GeneratedValue
+    @Column(name = "DELIVERY_ID")
     private Long id;
 
     @OneToOne(mappedBy = "delivery")
@@ -18,6 +18,6 @@ public class Delivery {
     private String zipcode;
 
     @Enumerated(EnumType.STRING)
-    private DeliveryStatus deliveryStatus; // 배송 상태
+    private DeliveryStatus status; // 배송 상태
 }
 
