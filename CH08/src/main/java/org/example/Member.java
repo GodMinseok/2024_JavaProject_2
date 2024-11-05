@@ -1,9 +1,7 @@
 package org.example;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Member {
@@ -14,8 +12,13 @@ public class Member {
 
     private String name;
 
-    @ManyToOne
+    private Integer age;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     private Team team;
+
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+    private List<Order> orders;
 
     public Long getId() {
         return id;
@@ -39,6 +42,22 @@ public class Member {
 
     public void setTeam(Team team) {
         this.team = team;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
 

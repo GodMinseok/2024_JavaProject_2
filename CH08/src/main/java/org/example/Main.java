@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,14 +25,29 @@ public class Main {
             member.setTeam(team);
             entityManager.persist(member);
 
-//            entityManager.flush();
-//            entityManager.clear();
+            Product product = new Product();
+            product.setName("PRODUCT1");
+            entityManager.persist(product);
 
-            Member findMember = entityManager.getReference(Member.class, 1L);
+            Order order = new Order();
+            order.setMember(member);
+            order.setProduct(product);
+            entityManager.persist(order);
+
+
+            entityManager.flush();
             entityManager.clear();
-            transaction.commit();
-            entityManager.close();
-            System.out.println("회원이름 : " + findMember.getName());
+
+            Member findMember = entityManager.find(Member.class, member.getId());
+            List<Order> orders = findMember.getOrders();
+
+            System.out.println("orders = " + orders.getClass().getName());
+
+//            Member findMember = entityManager.getReference(Member.class, 1L);
+//            entityManager.clear();
+//            transaction.commit();
+//            entityManager.close();
+//            System.out.println("회원이름 : " + findMember.getName());
 
 //            printUserAndTeam(entityManager, 1L);
 
@@ -55,5 +71,6 @@ public class Main {
         System.out.println("소속 팀 : " + team.getName());
 
         System.out.println("member.class : " + findMember.getClass().getName());
+        System.out.println("team.class : " + team.getClass().getName());
     }
 }
