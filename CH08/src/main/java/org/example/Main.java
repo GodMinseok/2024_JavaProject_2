@@ -73,4 +73,26 @@ public class Main {
         System.out.println("member.class : " + findMember.getClass().getName());
         System.out.println("team.class : " + team.getClass().getName());
     }
+
+    public static void removeNoCascade(EntityManager em) {
+        // Parent의 Cascade 옵션 제거 후 테스트
+        Parent findParent = em.find(Parent.class, 3L);
+        Child child1 = em.find(Child.class, 4L);
+        Child child2 = em.find(Child.class, 5L);
+
+        em.remove(child1);
+        em.remove(child2);
+        em.remove(findParent);
+    }
+
+    public static void saveWithCascade(EntityManager em) {
+        Child child1 = new Child();
+        Child child2 = new Child();
+        
+    }
+    public static void removeWithCascade(EntityManager em) {
+        // Parent의 Cascade 옵션 추가 후 테스트 CascadeType.REMOVE
+        Parent findParent = em.find(Parent.class, 3L);
+        em.remove(findParent);
+    }
 }
